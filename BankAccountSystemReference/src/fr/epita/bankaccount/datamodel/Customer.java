@@ -35,7 +35,22 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
+	/**
+	 * @param name
+	 * @param address
+	 */
+	public Customer(String name, String address) {
+		this.name = name;
+		this.address = address;
+	}
 	
+	
+	/**
+	 * Default Constructor
+	 */
+	public Customer() {
+		
+	}
 	
 
 }

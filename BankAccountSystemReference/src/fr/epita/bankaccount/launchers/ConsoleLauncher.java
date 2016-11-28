@@ -24,7 +24,6 @@ public class ConsoleLauncher {
 		System.out.println("Hello, welcome to the bank account system");
 		
 		Scanner scanner = new Scanner(System.in);
-		Customer customer = new Customer();
 		
 		System.out.println("Please input a country : ");
 		String country = scanner.nextLine();
@@ -33,8 +32,9 @@ public class ConsoleLauncher {
 		System.out.println("input the customer name :");
 		String customerName = scanner.nextLine();
 		
-		customer.setAddress(city + ", " + country);
-		customer.setName(customerName);
+//		customer.setAddress(city + ", " + country);
+//		customer.setName(customerName);
+		Customer customer = new Customer(customerName, city + ", " + country);
 		
 		System.out.println(customer.getName() + " : " + customer.getAddress());
 		
