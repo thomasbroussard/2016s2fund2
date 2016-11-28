@@ -27,7 +27,7 @@ public class ConsoleLauncher {
 		
 		System.out.println("Please input a country : ");
 		String country = scanner.nextLine();
-		System.out.println("Please input a city : ");
+		System.out.println("Please input a city : "); 
 		String city = scanner.nextLine();
 		System.out.println("input the customer name :");
 		String customerName = scanner.nextLine();
