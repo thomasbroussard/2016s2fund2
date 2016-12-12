@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.epita.shapes.datamodel.Circle;
 import fr.epita.shapes.datamodel.Shape;
 import fr.epita.shapes.datamodel.Square;
 import fr.epita.shapes.datamodel.Triangle;
@@ -26,6 +27,13 @@ public class ConsoleLauncher {
 		
 		List<Shape> list = new ArrayList<Shape>();
 		
+		Shape shape1 = new Circle(20);
+		Shape square = new Square(10);
+		
+	
+		if (shape1 instanceof Circle){
+			System.out.println("detected a circle");
+		}
 		System.out.println("Hello, how many triangles would you like?");
 		
 		int wishedTriangles = scanner.nextInt();
