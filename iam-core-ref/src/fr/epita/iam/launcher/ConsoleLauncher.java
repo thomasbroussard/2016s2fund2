@@ -3,22 +3,29 @@
  */
 package fr.epita.iam.launcher;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import fr.epita.iam.datamodel.Identity;
+import fr.epita.iam.services.FileIdentityDAO;
 
 /**
  * @author tbrou
  *
  */
 public class ConsoleLauncher {
+	
+	private static FileIdentityDAO dao;
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("Hello, welcome to the IAM application");
 		Scanner scanner = new Scanner(System.in);
+		dao = new FileIdentityDAO();
+		
 		
 		
 		//authentication
@@ -65,7 +72,8 @@ public class ConsoleLauncher {
 		System.out.println("Please enter the Identity email");
 		String email = scanner.nextLine();
 		Identity newIdentity = new Identity(null, displayName, email);
-		System.out.println("you created this identity :" + newIdentity);
+		dao.writeIdentity(newIdentity);
+		System.out.println("you succesfully created this identity :" + newIdentity);
 	}
 
 	/**
