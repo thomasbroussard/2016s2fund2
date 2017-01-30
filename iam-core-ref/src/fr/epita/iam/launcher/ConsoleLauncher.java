@@ -4,10 +4,12 @@
 package fr.epita.iam.launcher;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.epita.iam.datamodel.Identity;
-import fr.epita.iam.services.FileIdentityDAO;
+import fr.epita.iam.services.JDBCIdentityDAO;
 
 /**
  * @author tbrou
@@ -15,16 +17,17 @@ import fr.epita.iam.services.FileIdentityDAO;
  */
 public class ConsoleLauncher {
 	
-	private static FileIdentityDAO dao;
+	private static JDBCIdentityDAO dao;
 
 	/**
 	 * @param args
 	 * @throws IOException 
+	 * @throws SQLException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 		System.out.println("Hello, welcome to the IAM application");
 		Scanner scanner = new Scanner(System.in);
-		dao = new FileIdentityDAO();
+		dao = new JDBCIdentityDAO();
 		
 		
 		
@@ -53,6 +56,9 @@ public class ConsoleLauncher {
 		case "c":
 			
 			break;
+		case "d":
+			listIdentities();
+			break;
 		default:
 			System.out.println("This option is not recognized ("+ answer + ")");
 			break;
@@ -63,9 +69,24 @@ public class ConsoleLauncher {
 	}
 
 	/**
-	 * @param scanner
+	 * @throws SQLException 
+	 * 
 	 */
-	private static void createIdentity(Scanner scanner) {
+	private static void listIdentities() throws SQLException {
+		System.out.println("This is the list of all identities in the system");
+		List<Identity> list = dao.readAll();
+		int size = list.size();
+		for(int i = 0; i < size; i++){
+			System.out.println( i+ "." + list.get(i));
+		}
+		
+	}
+
+	/**
+	 * @param scanner
+	 * @throws SQLException 
+	 */
+	private static void createIdentity(Scanner scanner) throws SQLException {
 		System.out.println("You've selected : Identity Creation");
 		System.out.println("Please enter the Identity display name");
 		String displayName = scanner.nextLine();
